@@ -97,6 +97,33 @@ pub fn cost_segment() -> SegmentConfig {
     }
 }
 
+pub fn newapi_cost_segment() -> SegmentConfig {
+    SegmentConfig {
+        id: SegmentId::NewApiCost,
+        enabled: false,
+        icon: IconConfig {
+            plain: "💰".to_string(),
+            nerd_font: "\u{f0d6f}".to_string(),
+        },
+        colors: ColorConfig {
+            icon: Some(AnsiColor::Color16 { c16: 11 }),
+            text: Some(AnsiColor::Color16 { c16: 11 }),
+            background: None,
+        },
+        styles: TextStyleConfig::default(),
+        options: {
+            let mut opts = HashMap::new();
+            opts.insert("base_url".to_string(), serde_json::Value::String("".to_string()));
+            opts.insert("user_token".to_string(), serde_json::Value::String("".to_string()));
+            opts.insert("user_id".to_string(), serde_json::Value::String("".to_string()));
+            opts.insert("token_name".to_string(), serde_json::Value::String("".to_string()));
+            opts.insert("provider".to_string(), serde_json::Value::String("".to_string()));
+            opts.insert("timeout".to_string(), serde_json::Value::Number(5.into()));
+            opts
+        },
+    }
+}
+
 pub fn session_segment() -> SegmentConfig {
     SegmentConfig {
         id: SegmentId::Session,

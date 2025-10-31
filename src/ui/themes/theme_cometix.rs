@@ -162,3 +162,44 @@ pub fn usage_segment() -> SegmentConfig {
         },
     }
 }
+
+pub fn newapi_cost_segment() -> SegmentConfig {
+    SegmentConfig {
+        id: SegmentId::NewApiCost,
+        enabled: false,
+        icon: IconConfig {
+            plain: "💰".to_string(),
+            nerd_font: "\u{f0d6f}".to_string(), // 󰵯 nf-md-wallet
+        },
+        colors: ColorConfig {
+            icon: Some(AnsiColor::Color256 { c256: 220 }), // Gold color
+            text: Some(AnsiColor::Color256 { c256: 220 }), // Gold color
+            background: None,
+        },
+        styles: TextStyleConfig { text_bold: true },
+        options: {
+            let mut opts = HashMap::new();
+            opts.insert(
+                "base_url".to_string(),
+                serde_json::Value::String("".to_string()),
+            );
+            opts.insert(
+                "user_token".to_string(),
+                serde_json::Value::String("".to_string()),
+            );
+            opts.insert(
+                "user_id".to_string(),
+                serde_json::Value::String("".to_string()),
+            );
+            opts.insert(
+                "token_name".to_string(),
+                serde_json::Value::String("".to_string()),
+            );
+            opts.insert(
+                "provider".to_string(),
+                serde_json::Value::String("newapi".to_string()),
+            );
+            opts
+        },
+    }
+}
