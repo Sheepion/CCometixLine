@@ -104,6 +104,46 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         config = ccometixline::ui::themes::ThemePresets::get_theme(&theme);
     }
 
+    // Apply NewApi Cost CLI parameter overrides
+    if cli.newapi_base_url.is_some()
+        || cli.newapi_user_token.is_some()
+        || cli.newapi_user_id.is_some()
+        || cli.newapi_token_name.is_some()
+        || cli.newapi_provider.is_some()
+    {
+        if let Some(segment_config) = config
+            .segments
+            .iter_mut()
+            .find(|s| s.id == ccometixline::config::SegmentId::NewApiCost)
+        {
+            if let Some(base_url) = &cli.newapi_base_url {
+                segment_config
+                    .options
+                    .insert("base_url".to_string(), serde_json::json!(base_url));
+            }
+            if let Some(user_token) = &cli.newapi_user_token {
+                segment_config
+                    .options
+                    .insert("user_token".to_string(), serde_json::json!(user_token));
+            }
+            if let Some(user_id) = &cli.newapi_user_id {
+                segment_config
+                    .options
+                    .insert("user_id".to_string(), serde_json::json!(user_id));
+            }
+            if let Some(token_name) = &cli.newapi_token_name {
+                segment_config
+                    .options
+                    .insert("token_name".to_string(), serde_json::json!(token_name));
+            }
+            if let Some(provider) = &cli.newapi_provider {
+                segment_config
+                    .options
+                    .insert("provider".to_string(), serde_json::json!(provider));
+            }
+        }
+    }
+
     // Check if stdin has data
     if io::stdin().is_terminal() {
         // No input data available, show main menu

@@ -31,6 +31,26 @@ pub struct Cli {
     /// Patch Claude Code cli.js to disable context warnings
     #[arg(long = "patch")]
     pub patch: Option<String>,
+
+    /// NewApi Cost: Base URL for API
+    #[arg(long = "newapi-base-url")]
+    pub newapi_base_url: Option<String>,
+
+    /// NewApi Cost: User token for authentication
+    #[arg(long = "newapi-user-token")]
+    pub newapi_user_token: Option<String>,
+
+    /// NewApi Cost: User ID
+    #[arg(long = "newapi-user-id")]
+    pub newapi_user_id: Option<String>,
+
+    /// NewApi Cost: Token name
+    #[arg(long = "newapi-token-name")]
+    pub newapi_token_name: Option<String>,
+
+    /// NewApi Cost: Provider name
+    #[arg(long = "newapi-provider")]
+    pub newapi_provider: Option<String>,
 }
 
 impl Cli {
