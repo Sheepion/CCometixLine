@@ -505,6 +505,11 @@ pub fn collect_all_segments(
                 let segment = UpdateSegment::new();
                 segment.collect(input)
             }
+            crate::config::SegmentId::NewApiCost => {
+                let segment = NewApiCostSegment::new()
+                    .with_config_from_options(&segment_config.options);
+                segment.collect(input)
+            }
         };
 
         if let Some(data) = segment_data {
