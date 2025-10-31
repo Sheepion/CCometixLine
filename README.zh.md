@@ -1,5 +1,7 @@
 # CCometixLine
 
+> **Fork 自 [CCometixLine](https://github.com/Haleclipse/CCometixLine)，添加了 NewAPI 费用统计功能。**
+
 [English](README.md) | [中文](README.zh.md)
 
 基于 Rust 的高性能 Claude Code 状态栏工具，集成 Git 信息、使用量跟踪、交互式 TUI 配置和 Claude Code 补丁工具。
@@ -215,6 +217,20 @@ ccline --patch /path/to/claude-code/cli.js
 # 常见安装路径示例
 ccline --patch ~/.local/share/fnm/node-versions/v24.4.1/installation/lib/node_modules/@anthropic-ai/claude-code/cli.js
 ```
+
+### NewAPI 费用显示
+
+```bash
+ccline --newapi-base-url 'newapi-base-url' \ 
+       --newapi-user-token 'your-user-token' \ 
+       --newapi-user-id 'your-user-id' \ 
+       --newapi-token-name 'yout-token-name' \ 
+       --newapi-provider 'your-provider-name'
+```
+
+需要在你的 NewAPI 里创建 user token 才可以使用。
+
+provider name 只是显示使用
 
 ## 默认段落
 

@@ -1,5 +1,7 @@
 # CCometixLine
 
+> **Forked from [CCometixLine](https://github.com/Haleclipse/CCometixLine), added NewAPI cost tracking functionality.**
+
 [English](README.md) | [中文](README.zh.md)
 
 A high-performance Claude Code statusline tool written in Rust with Git integration, usage tracking, interactive TUI configuration, and Claude Code enhancement utilities.
@@ -223,6 +225,20 @@ ccline --patch /path/to/claude-code/cli.js
 # Example for common installation
 ccline --patch ~/.local/share/fnm/node-versions/v24.4.1/installation/lib/node_modules/@anthropic-ai/claude-code/cli.js
 ```
+
+### NewAPI Cost Display
+
+```bash
+ccline --newapi-base-url 'newapi-base-url' \
+       --newapi-user-token 'your-user-token' \
+       --newapi-user-id 'your-user-id' \
+       --newapi-token-name 'your-token-name' \
+       --newapi-provider 'your-provider-name'
+```
+
+You need to create a user token in your NewAPI to use this feature.
+
+The provider name is for display purposes only.
 
 ## Default Segments
 

@@ -51,6 +51,10 @@ pub struct Cli {
     /// NewApi Cost: Provider name
     #[arg(long = "newapi-provider")]
     pub newapi_provider: Option<String>,
+
+    /// NewApi Cost: Quota per unit (default: 500000)
+    #[arg(long = "newapi-quota-per-unit")]
+    pub newapi_quota_per_unit: Option<f64>,
 }
 
 impl Cli {

@@ -191,6 +191,10 @@ pub fn newapi_cost_segment() -> SegmentConfig {
             opts.insert("token_name".to_string(), serde_json::Value::String("".to_string()));
             opts.insert("provider".to_string(), serde_json::Value::String("".to_string()));
             opts.insert("timeout".to_string(), serde_json::Value::Number(5.into()));
+            opts.insert(
+                "quota_per_unit".to_string(),
+                serde_json::Value::Number(serde_json::Number::from_f64(500000.0).unwrap()),
+            );
             opts
         },
     }

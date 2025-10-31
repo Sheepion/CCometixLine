@@ -110,6 +110,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         || cli.newapi_user_id.is_some()
         || cli.newapi_token_name.is_some()
         || cli.newapi_provider.is_some()
+        || cli.newapi_quota_per_unit.is_some()
     {
         if let Some(segment_config) = config
             .segments
@@ -140,6 +141,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 segment_config
                     .options
                     .insert("provider".to_string(), serde_json::json!(provider));
+            }
+            if let Some(quota_per_unit) = cli.newapi_quota_per_unit {
+                segment_config
+                    .options
+                    .insert("quota_per_unit".to_string(), serde_json::json!(quota_per_unit));
             }
         }
     }

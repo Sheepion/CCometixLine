@@ -31,6 +31,7 @@ pub struct NewApiCostSegment {
     pub user_id: Option<String>,
     pub token_name: Option<String>,
     pub provider: Option<String>,
+    pub quota_per_unit: Option<f64>,
 }
 
 impl Default for NewApiCostSegment {
@@ -47,6 +48,7 @@ impl NewApiCostSegment {
             user_id: None,
             token_name: None,
             provider: None,
+            quota_per_unit: None,
         }
     }
 
@@ -66,6 +68,9 @@ impl NewApiCostSegment {
         }
         if let Some(value) = options.get("provider") {
             self.provider = value.as_str().map(|s| s.to_string());
+        }
+        if let Some(value) = options.get("quota_per_unit") {
+            self.quota_per_unit = value.as_f64();
         }
         self
     }
@@ -97,6 +102,12 @@ impl NewApiCostSegment {
     /// Builder method for provider (used for CLI override)
     pub fn with_provider(mut self, provider: String) -> Self {
         self.provider = Some(provider);
+        self
+    }
+
+    /// Builder method for quota_per_unit (used for CLI override)
+    pub fn with_quota_per_unit(mut self, quota_per_unit: f64) -> Self {
+        self.quota_per_unit = Some(quota_per_unit);
         self
     }
 
@@ -169,8 +180,9 @@ impl NewApiCostSegment {
             return None;
         }
 
-        // Calculate cost: quota / 500000
-        let cost = api_response.data.quota as f64 / 500000.0;
+        // Calculate cost: quota / quota_per_unit (default 500000)
+        let quota_per_unit = self.quota_per_unit.unwrap_or(500000.0);
+        let cost = api_response.data.quota as f64 / quota_per_unit;
 
         Some(cost)
     }

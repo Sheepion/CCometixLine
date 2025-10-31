@@ -199,6 +199,10 @@ pub fn newapi_cost_segment() -> SegmentConfig {
                 "provider".to_string(),
                 serde_json::Value::String("newapi".to_string()),
             );
+            opts.insert(
+                "quota_per_unit".to_string(),
+                serde_json::Value::Number(serde_json::Number::from_f64(500000.0).unwrap()),
+            );
             opts
         },
     }
