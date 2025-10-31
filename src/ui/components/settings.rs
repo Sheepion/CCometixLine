@@ -33,6 +33,7 @@ impl SettingsComponent {
                 SegmentId::ContextWindow => "Context Window",
                 SegmentId::Usage => "Usage",
                 SegmentId::Cost => "Cost",
+                SegmentId::NewApiCost => "NewApi Cost",
                 SegmentId::Session => "Session",
                 SegmentId::OutputStyle => "Output Style",
                 SegmentId::Update => "Update",

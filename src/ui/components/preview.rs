@@ -183,6 +183,16 @@ impl PreviewComponent {
                         map
                     },
                 },
+                SegmentId::NewApiCost => SegmentData {
+                    primary: "¥12.34".to_string(),
+                    secondary: "newapi".to_string(),
+                    metadata: {
+                        let mut map = HashMap::new();
+                        map.insert("cost".to_string(), "12.34".to_string());
+                        map.insert("provider".to_string(), "newapi".to_string());
+                        map
+                    },
+                },
             };
 
             segments_data.push((segment_config.clone(), mock_data));
